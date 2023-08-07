@@ -43,6 +43,23 @@ module.exports = {
       }
     });
 
+    await queryInterface.createTable(CATEGORY_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING(32)
+      },
+      image: {
+        allowNull: false,
+        type: DataTypes.STRING
+      }
+    });
+
     await queryInterface.createTable(PRODUCT_TABLE,{
       id: {
         allowNull: false,
@@ -85,23 +102,6 @@ module.exports = {
         allowNull: true,
         default: false,
         type: DataTypes.BOOLEAN
-      }
-    });
-
-    await queryInterface.createTable(CATEGORY_TABLE, {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      name: {
-        allowNull: false,
-        type: DataTypes.STRING(32)
-      },
-      image: {
-        allowNull: false,
-        type: DataTypes.STRING
       }
     });
 
