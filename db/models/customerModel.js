@@ -10,15 +10,14 @@ const customerSchema = {
     type: DataTypes.INTEGER
   },
   firstName:{
-    field: "first_name",
     allowNull:false,
-    type: DataTypes.STRING(32)
+    type: DataTypes.STRING(32),
+    field: "first_name"
   },
   lastName: {
-    columnName:'lastName',
-    field: "last_name",
     allowNull:false,
-    type: DataTypes.STRING(32)
+    type: DataTypes.STRING(32),
+    field: "last_name"
   },
   email: {
     allowNull:false,
