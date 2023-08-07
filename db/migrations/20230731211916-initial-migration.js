@@ -19,11 +19,13 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      first_name:{
+      firstName:{
+        field: "first_name",
         allowNull:false,
         type: DataTypes.STRING(32)
       },
-      last_name: {
+      lastName: {
+        field: "last_name",
         allowNull:false,
         type: DataTypes.STRING(32)
       },
