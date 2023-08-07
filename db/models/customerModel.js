@@ -15,6 +15,7 @@ const customerSchema = {
     type: DataTypes.STRING(32)
   },
   lastName: {
+    columnName:'lastName',
     field: "last_name",
     allowNull:false,
     type: DataTypes.STRING(32)
