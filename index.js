@@ -7,7 +7,7 @@ const { logError, errorHandler, boomErrorHandler, ormErrorHandler } = require('.
 
 app.use(express.json());
 
-const whiteList = ["https://ecommerce-app-mu-seven.vercel.app/"];
+const whiteList = ["https://ecommerce-app-mu-seven.vercel.app/","http://localhost:3000"];
 const options = {
   origin: (origin,callback) => {
     if(whiteList.includes(origin)){
