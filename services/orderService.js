@@ -47,8 +47,14 @@ class orderService {
   }
 
   async createItem(body) {
-    const newItem = await models.ProductsOrders.create(body);
-    return newItem;
+    await models.ProductsOrders.bulkCreate(body.items,(err,results)=>{
+      if (err) {
+        boom.badRequest(err);
+        return;
+      }else{
+        return results;
+      }
+    })
   }
 }
 

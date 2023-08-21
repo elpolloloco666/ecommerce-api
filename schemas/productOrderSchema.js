@@ -5,10 +5,14 @@ const orderId = Joi.number().integer();
 const prodctId = Joi.number().integer();
 const amount = Joi.number().integer();
 
-const createProductItemSchema = Joi.object({
+const itemSchema = Joi.object({
   orderId: orderId.required(),
   productId: prodctId.required(),
   amount: amount.required()
+});
+
+const createProductItemSchema = Joi.object({
+  items: Joi.array().items(itemSchema).required()
 });
 
 const updateProductItemSchema = Joi.object({
