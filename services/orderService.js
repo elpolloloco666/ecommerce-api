@@ -1,5 +1,8 @@
 const {models} = require('../libs/sequelize');
 const boom = require('@hapi/boom');
+const productService = require('../services/productService');
+
+const product = new productService();
 
 class orderService {
 
@@ -47,14 +50,15 @@ class orderService {
   }
 
   async createItem(body) {
-    await models.ProductsOrders.bulkCreate(body.items,(err,results)=>{
-      if (err) {
-        boom.badRequest(err);
-        return;
-      }else{
-        return results;
-      }
-    })
+    const items = body.items;
+    const orderItems = await models.ProductsOrders.bulkCreate(items);
+    items.forEach(item => async() =>{
+      const productData = await product.getOneProduct(item.productId);
+      const stock = productData.stock;
+      const currentStock = stock - item.amount;
+      const updatedProduct = await product.updateProduct(item.productId,{stock: currentStock});
+    });
+    return orderItems;
   }
 }
 
