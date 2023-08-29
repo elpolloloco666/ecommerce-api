@@ -52,12 +52,12 @@ class orderService {
   async createItem(body) {
     const items = body.items;
     const orderItems = await models.ProductsOrders.bulkCreate(items);
-    items.forEach(item => async() =>{
+    for (const item of items) {
       const productData = await product.getOneProduct(item.productId);
       const stock = productData.stock;
       const currentStock = stock - item.amount;
-      const updatedProduct = await product.updateProduct(item.productId,{stock: currentStock});
-    });
+      await product.updateProduct(item.productId, { stock: currentStock });
+    }
     return orderItems;
   }
 }
