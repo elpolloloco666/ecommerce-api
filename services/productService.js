@@ -20,7 +20,7 @@ class productService {
 
     if(category) options.where = {categoryId:category};
 
-    if(search) options.where = {name:{[Op.like]: '%' + search + '%'}};
+    if(search) options.where = {name:{[Op.iLike]: '%' + search.toLowerCase() + '%'}};
 
     const products = await models.Product.findAll(options);
     return products;
